@@ -1,0 +1,27 @@
+return (
+
+<div className="row">
+    <p class="text-center">ملفات - الصف الأول ثانوي</p>
+
+    {posts.length > 0 ? (
+    posts.map((post) => (
+    <div class="col-sm-6">
+        <div key={post.key} className="card bg-dark text-white">
+            <div class="card-body">
+                <h5 class="card-title">{post.title}</h5>
+
+                <p class="card-text">{post.status}</p>
+
+                <a href={post.url} class="btn btn-primary">
+                    هنا
+                </a>
+            </div>
+        </div>
+    </div>
+    ))
+    ) : (
+    <h1>لا يوجد ملفات حاليًا</h1>
+    )}
+</div>
+);
+};

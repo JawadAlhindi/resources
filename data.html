@@ -1,0 +1,114 @@
+<html lang="ar" dir="rtl" data-arp-injected="true">
+
+<head>
+    <title>123123</title>
+</head>
+
+<body style=""><span id="warning-container"><i data-reactroot=""></i></span>
+    <nav class="navbar navbar-light bg-dark">
+        <div class="container-fluid">
+            <form class="d-flex ">
+                <input class="form-control me-2 " type="search" onekeyup="searchCard()" id="search"
+                    placeholder="قريبًا">
+            </form>
+        </div>
+    </nav>
+
+
+
+    <p class="text-center">ملفات -الصف الأول ثانوي</p>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="card-title">title</h5>
+                    <p class="card-text">status</p>
+                    <a target="_blank" href=" " class="btn btn-primary">link</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <script type="module">
+        // Filling The Card
+        function AddToDiv(title, status, status, id) {
+            var card = document.createElement("div");
+            card.className = "card bg-dark text-white";
+            card.id = id;
+
+            var cardBody = document.createElement("div");
+            cardBody.className = "card-body";
+
+            var cardTitle = document.createElement("h5");
+            cardTitle.className = "card-title";
+            cardTitle.innerHTML = title;
+
+            var cardText = document.createElement("p");
+            cardText.className = "card-text";
+            cardText.innerHTML = status;
+
+            var cardLink = document.createElement("a");
+            cardLink.className = "btn btn-primary";
+            cardLink.href = url;
+            cardLink.innerHTML = "هنا";
+            cardBody.appendChild(cardTitle);
+            cardBody.appendChild(cardText);
+            cardBody.appendChild(cardLink);
+            card.appendChild(cardBody);
+            document.getElementById("files").appendChild(card);
+        }
+
+
+
+        // import+confg
+
+
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBkD1GwiD02jnA9vq8kpeZdshhqacFS1Bk",
+            authDomain: "elearning-8.firebaseapp.com",
+            databaseURL: "https://elearning-8-default-rtdb.firebaseio.com",
+            projectId: "elearning-8",
+            storageBucket: "elearning-8.appspot.com",
+            messagingSenderId: "355338922258",
+            appId: "1:355338922258:web:d1972828425429dadaebcb",
+            measurementId: "G-V2WQH9X8LP"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        // const analytics = getAnalytics(app);
+        import {
+            getfirestore, doc, getdoc, collection, onSnapshot
+        }
+            from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+        const db = getfirestore(app);
+
+
+        async function GetAllDataOnce() {
+            const querySnapshot = await getDocs(collection(db, "resources"));
+
+            var resources [];
+            querySnapshot.forEach(doc => {
+                resources.push(doc.data());
+            });
+            AddAllItemstodiv(resources);
+        }
+
+        window.onload = GetAllDataOnce();
+    </script>
+
+</body>
+
+</html>
